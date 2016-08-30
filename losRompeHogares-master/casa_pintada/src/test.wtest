@@ -1,0 +1,142 @@
+import objects.*
+
+test "cuantas latas se necesitan para pintar 251 m2"{
+	
+	assert.equals(6, pintura.getRendimiento(251.00))
+}
+
+test "cuantas latas se necesitan para pintar 250 m2"{
+	
+	assert.equals(5,pintura.getRendimiento(250.00))
+}
+
+test "cuantas latas se necesitan para pintar 249 m2"{
+	
+	assert.equals(5,pintura.getRendimiento(249.00))
+}
+
+test "cual es el costo de pintura de una superficie de 10 m2"{
+	
+	assert.equals(200, pintura.getPrecioLatas(10.00))
+}
+
+test "cual es el costo de pintura de una superficie de 250 m2"{
+	
+	assert.equals(1000, pintura.getPrecioLatas(250.00))
+}
+
+test "cuanto me cobra raul de mano de obra por pintar 20 m2"{
+	
+	assert.equals(500,raul.manoDeObra(20.00))
+}
+
+test "cuanto me cobra raul en total por pintar 20 m2"{
+	
+	assert.equals(700,raul.presupuesto(20.00))
+}
+
+test "cuanto me cobra carlos en total por pintar 20 m2"{
+	
+	assert.equals(500,carlos.manoDeObra(20.00))
+}
+
+test "cuanto me cobra carlos en total por pintar 32 m2"{
+	
+	assert.equals(860,carlos.manoDeObra(32.00))
+}
+
+test "cuanto me cobra venancio de mano de obra por pintar 32 m2"{
+	
+	assert.equals(880, venancio.manoDeObra(32.00))
+}
+
+test "cuanto me cobra venancio de mano de obra por pintar 20 m2"{
+	
+	assert.equals(440,venancio.manoDeObra(20.00))
+}
+
+test "cuanto me cobra venancio en total por pintar 32 m2"{
+	
+	assert.equals(1080,venancio.presupuesto(32.00))
+}
+
+test "cual es la superficie de la cocina"{
+
+	assert.equals(21, aldo.getCocina())
+}
+
+test "cual es la superficie de la habitacion"{
+	
+	assert.equals(20, aldo.getHabitacion())
+}
+
+test "cual es la superficie total a pintar para aldo"{
+	
+	assert.equals(41, aldo.getHabitacion()+aldo.getCocina())
+}
+
+test "cual es el presupuesto maximo de aldo"{
+	
+	aldo.setAhorro(6000)
+	assert.equals(1200,aldo.getPresupuesto())
+}
+
+test "saber si aldo puede contratar a raul"{
+	
+	assert.that(raul.presupuesto(41.00) < aldo.getPresupuesto())
+}
+
+test "saber si aldo puede contratar a raul ahorrando 2000 mas"{
+	
+	aldo.setAhorro(8000)
+	assert.that(raul.presupuesto(41.00) < aldo.getPresupuesto())
+	aldo.setAhorro(6000)
+}
+
+test "aldo ahorra pero le subio la pintura, que bajon"{
+	
+	aldo.setAhorro(8000)
+	pintura.setPrecio(400)
+	assert.that(raul.presupuesto(41.00) < aldo.getPresupuesto())
+	aldo.setAhorro(6000)
+	pintura.setPrecio(200)
+}
+
+test "aldo puede contratar a carlos"{
+	
+	assert.that(carlos.manoDeObra(41.00) < aldo.getPresupuesto())
+}
+
+test "aldo NO puede contratar a venancio" {
+	
+	assert.that(venancio.presupuesto(41.00) > aldo.getPresupuesto())
+}
+
+test "aldo ahorro 2000 mas, puede contratar a venancio "{
+	
+	aldo.setAhorro(8000)
+	assert.that(venancio.presupuesto(41.00) < aldo.getPresupuesto())
+	aldo.setAhorro(6000)
+}
+
+test "cual es el costo para pintar 10m2"{
+	
+	assert.equals(35.00,pinturaAGranel.getPrecio(10.00))
+}
+
+test "cual es el costo para pintar 250 m2"{
+	
+	assert.equals(875.00,pinturaAGranel.getPrecio(250.00))
+}
+
+test "aldo puede contratar a raul si trabaja con pitura a granel"{
+	
+	assert.that((raul.manoDeObra(41.00)+pinturaAGranel.getPrecio(41.00)) < aldo.getPresupuesto())
+}
+
+test "aldo NO puede contratar a venancio si trabaja con pintura a granel"{
+	
+	assert.that(venancio.manoDeObra(41.00)+pinturaAGranel.getPrecio(41.00) > aldo.getPresupuesto())
+}
+
+
