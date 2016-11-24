@@ -1,0 +1,36 @@
+import pintores.*
+
+test "Cuanto me cobra Raul de mano de obra por pintar 20 m2" {
+	assert.equals(500, raul.cotizarManoDeObra(20))	
+} 
+
+
+test "Cuanto me cobra Raul en total (pintura y mano de obra) por pintar 20 m2" {
+	assert.equals(700, raul.cotizar(20))
+}
+
+
+test "Cuanto me cobra Carlos en total (pintura y mano de obra) por pintar 20 m2" {
+	assert.equals(500, carlos.cotizar(20))
+}
+
+
+test "Cuanto me cobra Carlos en total (pintura y mano de obra) por pintar 32 m2" {
+	assert.equals(860, carlos.cotizar(32))
+}
+
+
+test "Cuanto me cobra Venancio de mano de obra por pintar 32 m2" {
+	assert.equals(880, venancio.cotizarManoDeObra(32))
+}
+
+
+test "Cuanto me cobra Venancio de mano de obra por pintar 20 m2" {
+	assert.equals(440, venancio.cotizarManoDeObra(20))
+}
+
+
+test "Cuanto me cobra Venancio en total (pintura y mano de obra) por pintar 32 m2" {
+	assert.equals(1080, venancio.cotizar(32))
+}
+

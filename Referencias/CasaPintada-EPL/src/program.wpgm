@@ -1,0 +1,141 @@
+import aldo.aldo
+import pintores.*
+import pinturerias.*
+
+/* For fun 
+ * Intenten adivinar como toma decisiones Aldo
+ * colapcen el codigo de la closures para evitar spoliers (?)
+ */
+
+program main {
+	
+	// closures para facilitar el scripting 
+		
+	/** obtengo el nombre de los pintores en string, si los conozco */
+	const nombre = { pintor => 
+		if (pintor == raul)
+			return 'Raul'
+		else if (pintor == carlos)
+			return 'carlos'
+		else if (pintor == venancio)
+			return 'venancio'
+		else
+			return '¿?'// la edad no viene sola :V
+	}
+	
+	/** */  // <- A proposito :V
+	const sinComentarios = { dummy => }
+	
+	/** Si la pintureria es conocida comenta como se compro la pintura y el precio */
+	const comentarPrecioPintura = { pintureria =>
+		if(pintureria == manoEnLaLata) {
+			console.println('Pagando por lata de pintura ' + manoEnLaLata.costoLata() + ' pesos')
+		
+		} else if (pintureria == todoFluye) {
+			console.println('Pagando por litro de pintura ' + todoFluye.costoPorLitro() + ' pesos')
+			
+		} else {
+			console.println('Pagando... (?!)')
+			console.println('Emmm.. cierto monto por la pintura...')	
+		}
+	}
+
+	/** La linea de pensamiento que usa aldo para elegir el pintor y la pintureria */
+	const aldoEligue = { cPintureria =>
+		
+		/* En la mente humana la logica juega de visitante :V */
+		
+		laPintureria.pintureria(laPintureria.porDefecto())
+
+		if (aldo.puedeContratarAlPintor(raul)) {
+			console.println('Aldo decide contratar a raul sin pensarlo dos veces')
+			
+			cPintureria.apply(laPintureria.porDefecto())
+		
+		} else {
+			laPintureria.pintureria(todoFluye)
+			
+			if (aldo.puedeContratarAlPintor(raul)) {
+				console.println('Aldo decide contratar a raul con ayuda del Taoismo (¿?)')
+				
+				cPintureria.apply(todoFluye)
+				
+			} else {
+				const pintores = [raul, carlos, venancio]
+				const superficieAPintar = aldo.superficeAPintar()
+				
+				laPintureria.pintureria(manoEnLaLata)
+				
+				var mejorPintorPorLata = pintores.min { pintor => pintor.cotizar(superficieAPintar) }
+				var minimoPorLata = mejorPintorPorLata.cotizar(superficieAPintar)
+				
+				laPintureria.pintureria(todoFluye)
+				
+				var mejorPintorAGranel = pintores.min { pintor => pintor.cotizar(superficieAPintar) }
+				var minimoAGranel = mejorPintorAGranel.cotizar(superficieAPintar)
+				
+				var puedePagarLoMasBarato = false
+				
+				if ( minimoPorLata < minimoAGranel ) {
+					if (aldo.puedeContratarAlPintor(mejorPintorPorLata)) {
+						puedePagarLoMasBarato = true
+						
+						console.println('Aldo decide contratar al mas barato, ' + nombre.apply(mejorPintorPorLata) + '.')
+					
+						cPintureria.apply(manoEnLaLata)
+							
+					}
+					
+				} else {
+					if (aldo.puedeContratarAlPintor(mejorPintorAGranel)) {
+						puedePagarLoMasBarato = true
+						
+						console.println('Aldo decide contratar al mas barato, ' + nombre.apply(mejorPintorAGranel) + '.')
+					
+						cPintureria.apply(manoEnLaLata)	
+					}
+				}
+				
+				if (not puedePagarLoMasBarato){
+					console.println('Aldo NO puede pagar la opcion mas barata, decide esperar un tiempo...')
+				}
+			}
+		}
+	}
+	
+	
+	// Story telling :V
+	
+	console.println('Aldo esta en un apuro nesecita pintar su casa...')
+	console.println('')
+	
+	console.println('Un amigo le recomienda a Raul, quien trabaja desde hace años en el rubro,')
+ 	console.println('es prolijo y deja la casa en orden al terminar su actividad.')
+ 	console.println('Tambien recibe los datos de Carlos y Venacio')
+ 	console.println('')
+ 	
+ 	console.println('Aldo ve sus opciones con su presupuesto de ' + aldo.presupuesto() + ' pesos')
+ 	console.println('.')
+ 	console.println('..')
+ 	console.println('...')
+ 	aldoEligue.apply(sinComentarios)
+ 	console.println('')
+ 	console.println('')
+ 	
+ 	console.println('En el tiempo que le tomo a Aldo dicidir,') 
+	console.println('los precios de la pintura cambiaron por una crisis economica...')
+	
+	manoEnLaLata.costoLata(50.randomUpTo(400))
+	todoFluye.costoPorLitro((125).randomUpTo(700) / 100.0)
+	
+	console.println('')
+ 	console.println('')
+	
+	console.println('Aldo ahorra ' + 100.randomUpTo(1500) + ' pesos y decide revaluar sus opciones')
+	console.println('.')
+ 	console.println('..')
+ 	console.println('...')
+	aldoEligue.apply(comentarPrecioPintura)
+	
+ 	
+}

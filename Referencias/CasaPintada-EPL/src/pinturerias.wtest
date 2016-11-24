@@ -1,0 +1,46 @@
+/* 
+ * Test para pinturerias
+ * Seria lindo que se pudiera usar Spock para testear en wollok 
+ */
+ 
+import pinturerias.*
+
+
+test "Asegurase que por defecto se use manoEnLaLata" {
+	assert.equals(laPintureria.porDefecto(), laPintureria.pintureria())
+}
+
+test "Cuantas latas de pintura necesitas para pintar 251 m2" {
+	assert.equals(6, laPintureria.cantidadDeLatas(251))	
+}
+
+test "Cuantas latas de pintura necesitas para pintar 250 m2" {
+	assert.equals(5, laPintureria.cantidadDeLatas(250))
+}
+
+test "Cuantas latas de pintura necesitas para pintar 249 m2" {
+	assert.equals(5, laPintureria.cantidadDeLatas(249))
+}
+
+test "Cual es el costo de pintura de una superficie de 10 m2" {
+	assert.equals(200, laPintureria.costoPintura(10))
+}
+
+test "Cual es el costo de pintura de una superficie de 250 m2"{
+	assert.equals(1000, laPintureria.costoPintura(250))
+}
+
+/* A granel */
+
+test "Cual es el costo de pintura a granel de una superficie de 10 m2" {
+	laPintureria.pintureria(todoFluye)
+	
+	assert.equals(35, laPintureria.costoPintura(10))
+}
+
+test "Cual es el costo de pintura a granel de una superficie de 250 m2" {
+	laPintureria.pintureria(todoFluye)
+	
+	assert.equals(875, laPintureria.costoPintura(250))
+}
+
