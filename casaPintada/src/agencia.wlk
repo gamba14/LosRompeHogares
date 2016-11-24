@@ -1,3 +1,6 @@
+import casa.*
+import duenio.*
+import contratista.* 
 
 object agencia {
 	
