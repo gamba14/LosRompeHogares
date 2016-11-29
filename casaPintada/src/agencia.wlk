@@ -1,13 +1,15 @@
 import casa.*
 import duenio.*
-import contratista.* 
+import contratistas2.* 
 
 object agencia {
 	
-	var contratistas = []
-	
-	method agregarContratista(){
+	const contratistas = new Set() 
 		
+	method agregarContratista(_contratista){
+		
+				contratistas.add(_contratista)
+				
 	}
 	
 	method puedeContratar(_casa){
@@ -15,6 +17,8 @@ object agencia {
 	}
 	
 	method removerContratista(_quien){
+		
+			contratistas.remove(_quien)
 		
 	}
 

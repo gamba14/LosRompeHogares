@@ -1,4 +1,4 @@
-import contratista.*
+import contratistas2.*
 import duenio.*
 import agencia.*
 

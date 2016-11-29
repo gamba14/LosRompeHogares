@@ -1,11 +1,11 @@
-import contratista.*
+import contratistas2.*
 import casa.*
 import agencia.*
 
 class Duenio{
 	var nombre
 	var ahorros
-	var presupuesto = 20
+	//var presupuesto = 20
 	var casa
 	
 	constructor(_nombre,_ahorros,_casa){

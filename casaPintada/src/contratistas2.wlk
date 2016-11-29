@@ -5,11 +5,19 @@ import agencia.*
 
 class Contratista{
 	
+	//TODO- ver como usar este metodo desde las clases hijas...
 	var nombre
 	var historial = []
 	
+	method nombre()= nombre
+	
+	method nombre(_nombre) {
+		nombre = _nombre
+	}
 		
 	method serContratado(_casa,_duenio){
+		
+		historial.add(_casa)
 		
 	}
 	
@@ -27,9 +35,13 @@ class CobraPorAmbiente inherits Contratista{
 	
 	var precioPorAmbiente
 	
-	constructor(_precioPorAmbiente){
+	constructor(_nombre,_precioPorAmbiente){
+		
+		nombre = _nombre
 		
 		precioPorAmbiente = _precioPorAmbiente
+		
+		
 	}
 	
 	method darPresupuesto(_casa){
@@ -44,8 +56,9 @@ class CobraPorAmbienteMasPisos inherits Contratista{
 	var precioPorAmbiente
 	var plusPorPiso
 	
-	constructor(_precioPorAmbiente,_plusPorPiso){
+	constructor(_nombre,_precioPorAmbiente,_plusPorPiso){
 		
+		nombre = _nombre
 		precioPorAmbiente = _precioPorAmbiente
 		plusPorPiso = _plusPorPiso
 		

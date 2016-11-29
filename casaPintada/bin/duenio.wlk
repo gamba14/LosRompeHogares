@@ -1,12 +1,17 @@
+import contratistas2.*
+import casa.*
+import agencia.*
+
 class Duenio{
 	var nombre
 	var ahorros
-	var presupuesto = 20
+	//var presupuesto = 20
 	var casa
 	
-	constructor(_nombre,_ahorros){
+	constructor(_nombre,_ahorros,_casa){
 		nombre = _nombre
 		ahorros = _ahorros
+		casa = _casa
 	}
 	
 	method nombre() = nombre
@@ -16,6 +21,8 @@ class Duenio{
 	method ahorros(_ahorro){ahorros += _ahorro}
 	
 	method puedeContratar(_contratista){
+		
+		return _contratista.darPresupuesto(_casa) < (_ahorros * 0.2)
 		
 	}
 	
