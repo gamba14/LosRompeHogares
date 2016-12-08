@@ -10,7 +10,7 @@ object agencia {
 				
 	}
 	
-	method puedeContratar(_casa){
+	method puedeContratar(_casa, presupuesto){
 		
 	}
 	
