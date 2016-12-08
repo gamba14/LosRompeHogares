@@ -3,9 +3,26 @@ import casa.*
 import duenio.*
 import agencia.* 
 
-class Contratista{
+class Contrato {
+	var cliente
+	var monto
+	var contratista
 	
-	//TODO- ver como usar este metodo desde las clases hijas...
+	constructor(_cliente, _monto, _contratista) {
+		cliente = _cliente
+		monto = _monto
+		contratista = _contratista
+	}
+	
+	// getters
+	method cliente()     = cliente
+	method monto()       = monto
+	method contratisca() = contratista
+	 
+}
+
+class Contratista {
+	
 	var nombre
 	var historial = []
 	
@@ -14,19 +31,28 @@ class Contratista{
 	method nombre(_nombre) {
 		nombre = _nombre
 	}
+	
+	method darPresupuesto(_casa) = 0.0
 		
-	method serContratado(_casa,_duenio){
+	method serContratado(_casa,_duenio) {
 		
-		historial.add(_casa)
+		const contrato = new Contrato(_duenio,  self.darPresupuesto( _casa ), self)
 		
+		historial.add(contrato)
+		
+		return contrato
 	}
 	
 	method loTomoDePunto(_cliente){
+		const cantidad = historial.filter { 
+			contrato =>	contrato.cliente() == _cliente
+		} .size()
 		
+		return cantidad >= 2
 	}
 	
 	method montoTotal(){
-		
+		return historial.sum { contrato => contrato.monto() }
 	}
 
 }
@@ -44,7 +70,7 @@ class CobraPorAmbiente inherits Contratista{
 		
 	}
 	
-	method darPresupuesto(_casa){
+	override method darPresupuesto(_casa){
 		
 		return _casa.darCantHabitaciones() * precioPorAmbiente
 		
@@ -56,7 +82,7 @@ class CobraPorAmbienteMasPisos inherits Contratista{
 	var precioPorAmbiente
 	var plusPorPiso
 	
-	constructor(_nombre,_precioPorAmbiente,_plusPorPiso){
+	constructor(_nombre,_precioPorAmbiente,_plusPorPiso) {
 		
 		nombre = _nombre
 		precioPorAmbiente = _precioPorAmbiente
@@ -64,7 +90,7 @@ class CobraPorAmbienteMasPisos inherits Contratista{
 		
 	}
 	
-	method darPresupuesto(_casa){
+	override method darPresupuesto(_casa){
 		
 		return _casa.darCantHabitaciones() * precioPorAmbiente * _casa.pisos()
 	}
