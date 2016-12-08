@@ -63,6 +63,8 @@ class CobraPorAmbiente inherits Contratista{
 
 	var presupuesto
 	
+	var plus
+	
 	constructor(_nombre,_precioPorAmbiente,_plus){
 		
 		nombre = _nombre
