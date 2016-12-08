@@ -1,30 +1,28 @@
-import contratistas2.*
-import duenio.*
-import agencia.*
 
-class Casa{
+class Casa {
 	var pisos
-	var cantHabitaciones
+	var habitaciones = []
 	
 	constructor(_pisos,_habitaciones){
-		pisos = _pisos
-		cantHabitaciones = _habitaciones
+		pisos        = _pisos
+		habitaciones = _habitaciones
 	}
 	
 	method pisos() = pisos
 	
-	method darSuperficie(){
-		
+	method darCantHabitaciones() {
+		return habitaciones.size()
 	}
 	
-	method darCantHabitaciones() = cantHabitaciones
-	
+	method darSuperficie() {
+		return habitaciones.sum { habitacion => habitacion.superficie() }
+	}
 	
 	method esComplicada(){
-		
 		return self.darCantHabitaciones() > 3
-		
 	}
+}
+
 class Habitacion {
 	
 	var superficie
