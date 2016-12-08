@@ -24,9 +24,9 @@ class Duenio{
 	
 	method ahorros() = ahorros
 	
-	method ahorros(_ahorro){ahorros = _ahorro}
+	method ahorros(_ahorro){ahorros  = _ahorro}
 	
-	method ahorrar(_monto){ahorros += _monto}
+	method ahorrar(_monto ){ahorros += _monto }
 	
 	
 	method puedeContratar(_contratista){
