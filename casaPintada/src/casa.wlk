@@ -25,4 +25,13 @@ class Casa{
 		return self.darCantHabitaciones() > 3
 		
 	}
+class Habitacion {
+	
+	var superficie
+	
+	constructor(_superficie) {
+		superficie = _superficie
+	}
+	
+	method superficie() = superficie 
 }
