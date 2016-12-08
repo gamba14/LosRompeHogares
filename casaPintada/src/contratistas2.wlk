@@ -60,38 +60,25 @@ class Contratista {
 class CobraPorAmbiente inherits Contratista{
 	
 	var precioPorAmbiente
+
+	var presupuesto
 	
-	constructor(_nombre,_precioPorAmbiente){
+	constructor(_nombre,_precioPorAmbiente,_plus){
 		
 		nombre = _nombre
 		
 		precioPorAmbiente = _precioPorAmbiente
+
+		plus = _plus
 		
-		
+
 	}
 	
 	override method darPresupuesto(_casa){
 		
-		return _casa.darCantHabitaciones() * precioPorAmbiente
+		presupuesto = _casa.pisos() * _casa.darCantHabitaciones() * precioPorAmbiente
 		
+		return presupuesto * plus
 	}
 }
 
-class CobraPorAmbienteMasPisos inherits Contratista{
-	
-	var precioPorAmbiente
-	var plusPorPiso
-	
-	constructor(_nombre,_precioPorAmbiente,_plusPorPiso) {
-		
-		nombre = _nombre
-		precioPorAmbiente = _precioPorAmbiente
-		plusPorPiso = _plusPorPiso
-		
-	}
-	
-	override method darPresupuesto(_casa){
-		
-		return _casa.darCantHabitaciones() * precioPorAmbiente * _casa.pisos()
-	}
-}
