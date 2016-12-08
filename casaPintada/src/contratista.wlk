@@ -20,9 +20,14 @@ class Contrato {
 
 
 class Contratista {
-	
+
 	var nombre
+
 	var historial = []
+	
+	constructor(_nombre) {
+		nombre = _nombre
+	}
 	
 	method darPresupuesto(_casa) = 0.0 // dummy
 	
@@ -47,65 +52,105 @@ class Contratista {
 		return historial.sum { contrato => contrato.monto() }
 	}
 
+	method nombre() = nombre
 }
+
 
 class Arquitecto inherits Contratista {
 	
 	var montoPorAmbiente = 100000
 	
-	override method darPresupuesto(_casa){
+	constructor(_nombre, _montoPorAmbiente)  = super(_nombre) {
+
+		montoPorAmbiente = _montoPorAmbiente
+	}
+	
+	override method darPresupuesto(_casa) {
 		
 		return montoPorAmbiente * _casa.pisos()
 	}
 	
 }
 
+
 class MaestroMObra inherits Contratista {
-	 var montoPorAmbiente = 50000
-	 var precioAmbientes
+	 const recargo = 0.2 // 20 %
 	 
-	 override method darPresupuesto(_casa){
+	 var montoPorAmbiente
+	 
+	 constructor(_nombre, _montoPorAmbinte) = super(_nombre)  {
+	 	montoPorAmbiente = _montoPorAmbinte
+	 }
+	 
+	 override method darPresupuesto(_casa) {
 	 	
-	 	precioAmbientes = montoPorAmbiente * _casa.darCantHabitaciones()
+	 	var precioAmbientes = montoPorAmbiente * _casa.darCantHabitaciones()
 	 	
-	 	if(_casa.esComplicada()){
-	 		return precioAmbientes += precioAmbientes * 0.2
-	 	}
+	 	if (_casa.esComplicada()) 
+	 		precioAmbientes += precioAmbientes * recargo
 	 	
 	 	return precioAmbientes
-	 	
-	 	
 	 }
 }
 
+
 class Albanil inherits Contratista{
+	
+	const precioHora = 50 // pesos
+	const jornadaLaboral = 8 // horas
+	
 	var diasPorAmbiente
 	
-	override method darPresupuesto(_casa){
-		//TODO implementame 
+	constructor(_nombre, _diasPorAmbiente) = super(_nombre)  {
 		
-		return 0.0 // TODO: change me
+		diasPorAmbiente = _diasPorAmbiente
+	}
+	
+	override method darPresupuesto(_casa){
+		
+		return _casa.darCantHabitaciones() * diasPorAmbiente * jornadaLaboral * precioHora 
 	}
 	
 }
+
 
 class Electricista inherits Contratista{
 	var montoPorAmbiente
 	
+	constructor(_nombre, _montoPorAmbiente) = super(_nombre) {
+		montoPorAmbiente = _montoPorAmbiente
+	}
+	
 	override method darPresupuesto(_casa){
-		//TODO implementame 
 		
-		return 0.0 // TODO: change me
+		var monto = _casa.darCantHabitaciones() * montoPorAmbiente
+		
+		if (_casa.esComplicada())
+			monto *= 2 
+		
+		return monto
 		
 	}
 }
 
+
 class Plomero inherits Contratista{
+	
+	const montoPorAmbiente = 100 // pesos
+	
 	var porcentajeRecargo
 	
+	constructor(_nombre, _porcentajeRecargo) = super(_nombre) {
+		porcentajeRecargo = _porcentajeRecargo
+	}
+	
 	override method darPresupuesto(_casa){
-		//TODO implementame 
 		
-		return 0.0 // TODO: change me
+		var monto = _casa.darCantHabitaciones() * montoPorAmbiente
+		
+		if (_casa.pisos() > 2)
+			monto += monto * porcentajeRecargo / 100
+		
+		return monto
 	}
 }
