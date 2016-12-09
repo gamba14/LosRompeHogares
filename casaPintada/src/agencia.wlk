@@ -13,11 +13,7 @@ object agencia {
 	}
 	
 	method puedeContratar(_casa, _cliente){
-		
+		return contratistas.filter { contratista => _cliente.puedeContratar(contratista) }
 	}
-	
-	
-
-
 
 }
