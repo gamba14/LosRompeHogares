@@ -31,7 +31,7 @@ class Contratista {
 	
 	method darPresupuesto(_casa) = 0.0 // dummy
 	
-	method serContratado(_casa,_duenio){
+	method serContratado(_casa,_duenio) {
 		
 		const contrato = new Contrato(_duenio,  self.darPresupuesto( _casa ), self)
 		
@@ -40,7 +40,7 @@ class Contratista {
 		return contrato
 	}
 	
-	method loTomoDePunto(_cliente){
+	method loTomoDePunto(_cliente) {
 		const cantidad = historial.filter { 
 			contrato =>	contrato.cliente() == _cliente
 		} .size()
@@ -94,7 +94,7 @@ class MaestroMObra inherits Contratista {
 }
 
 
-class Albanil inherits Contratista{
+class Albanil inherits Contratista {
 	
 	const precioHora = 50 // pesos
 	const jornadaLaboral = 8 // horas
@@ -114,7 +114,7 @@ class Albanil inherits Contratista{
 }
 
 
-class Electricista inherits Contratista{
+class Electricista inherits Contratista {
 	var montoPorAmbiente
 	
 	constructor(_nombre, _montoPorAmbiente) = super(_nombre) {
@@ -134,7 +134,7 @@ class Electricista inherits Contratista{
 }
 
 
-class Plomero inherits Contratista{
+class Plomero inherits Contratista {
 	
 	const montoPorAmbiente = 100 // pesos
 	
