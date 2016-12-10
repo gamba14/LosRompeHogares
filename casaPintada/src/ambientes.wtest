@@ -1,0 +1,12 @@
+import aldo.habitacion
+import aldo.cocina
+
+
+test "Cuál es la superficie a pintar de la cocina" {
+	assert.equals(21, cocina.superficieAPintar())
+}
+
+test "Cuál es la superficie a pintar de la habitación" {
+	assert.equals(20, habitacion.superficieAPintar())
+}
+
