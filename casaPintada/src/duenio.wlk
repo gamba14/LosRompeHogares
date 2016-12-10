@@ -2,7 +2,7 @@
 class Duenio{
 	var nombre
 	var ahorros
-	var presupuesto = 20 // %
+	var ppresupuesto = 20 // %
 	var casa
 	
 	var historial = []
@@ -13,11 +13,11 @@ class Duenio{
 		casa    = _casa
 	}
 	
-	constructor(_nombre,_ahorros,_casa, _presupuesto){
+	constructor(_nombre,_ahorros,_casa, _ppresupuesto){
 		nombre      = _nombre
 		ahorros     = _ahorros
 		casa        = _casa
-		presupuesto = _presupuesto
+		ppresupuesto = _ppresupuesto
 	}
 	
 	method nombre() = nombre
@@ -30,9 +30,13 @@ class Duenio{
 	
 	method casa() = casa
 	
+	method presupuesto() {
+		return ahorros * ppresupuesto / 100
+	}
+	
 	method puedeContratar(_contratista){
 		
-		return _contratista.darPresupuesto(_casa) < (_ahorros * presupuesto / 100)
+		return (_contratista.darPresupuesto(casa)) < (self.presupuesto())
 		
 	}
 	

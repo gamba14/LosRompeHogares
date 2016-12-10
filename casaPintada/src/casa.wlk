@@ -15,7 +15,7 @@ class Casa {
 	}
 	
 	method darSuperficie() {
-		return habitaciones.sum { habitacion => habitacion.superficie() }
+		return habitaciones.sum { habitacion => return habitacion.superficie() }
 	}
 	
 	method esComplicada(){

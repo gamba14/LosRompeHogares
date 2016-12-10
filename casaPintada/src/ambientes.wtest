@@ -6,6 +6,6 @@ test "Cuál es la superficie a pintar de la cocina" {
 }
 
 test "Cuál es la superficie a pintar de la habitación" {
-	assert.equals(20, fixture.habitacionAldo().superficieAPintar())
+	assert.equals(20, fixture.habitacionAldo().superficie())
 }
 
