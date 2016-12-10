@@ -28,6 +28,7 @@ class Duenio{
 	
 	method ahorrar(_monto ){ahorros += _monto }
 	
+	method casa() = casa
 	
 	method puedeContratar(_contratista){
 		
