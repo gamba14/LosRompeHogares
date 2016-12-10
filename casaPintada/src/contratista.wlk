@@ -6,8 +6,8 @@ class Contrato {
 	var contratista
 	
 	constructor(_cliente, _monto, _contratista) {
-		cliente = _cliente
-		monto = _monto
+		cliente     = _cliente
+		monto       = _monto
 		contratista = _contratista
 	}
 	
