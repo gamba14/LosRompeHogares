@@ -3,7 +3,6 @@ import pintores.*
 import pinturerias.*
 import fixture.*
 
-// FIXME: adaptar test
 
 test "Cuál es la superficie total a pintar para Aldo" {
 	assert.equals(41, fixture.aldo().casa().superfice())
@@ -26,54 +25,54 @@ test "Aldo puede contratar a Raul si ahorra 2000" {
 	
 	assert.equals(1600, fixture.aldo().presupuesto())
 	
-	assert.equals(1225, raul.cotizar(fixture.aldo().superficeAPintar()))
+	assert.equals(1225, raul.cotizar(fixture.aldo().casa().superfice()))
 	
-	assert.that(fixture.aldo().puedeContratarAlPintor(raul))
+	assert.that(fixture.aldo().puedeContratar(fixture.raul()))
 }
 
 test "Aldo NO puede contratar a Raul si ahorra 1000 y la pintura se va 400 por lata" {
-	aldo.ahorros(aldo.ahorros() + 1000)
+	fixture.aldo().ahorrar(1000)
 	
 	manoEnLaLata.costoLata(400)
 	
-	assert.equals(1400, aldo.presupuesto())
+	assert.equals(1400, fixture.aldo().presupuesto())
 	
-	assert.equals(1425, raul.cotizar(aldo.superficeAPintar()))
+	assert.equals(1425, raul.cotizar(fixture.aldo().casa().superfice()))
 	
-	assert.notThat(aldo.puedeContratarAlPintor(raul))
+	assert.notThat(fixture.aldo().puedeContratar(fixture.raul()))
 }
 
 test "Aldo puede contratar a Carlos" {
-	assert.equals(1130, carlos.cotizar(aldo.superficeAPintar()))
+	assert.equals(1130, carlos.cotizar(fixture.aldo().casa().superfice()))
 	
-	assert.that(aldo.puedeContratarAlPintor(carlos))
+	assert.that(fixture.aldo().puedeContratar(fixture.carlos()))
 }
 
 test "Aldo NO puede contratar a Venancio" {
-	assert.equals(1200, aldo.presupuesto())
+	assert.equals(1200, fixture.aldo().presupuesto())
 	
-	assert.equals(1300, venancio.cotizar(aldo.superficeAPintar()))
+	assert.equals(1300, venancio.cotizar(fixture.aldo().casa().superfice()))
 	
-	assert.notThat(aldo.puedeContratarAlPintor(venancio))
+	assert.notThat(fixture.aldo().puedeContratar(fixture.venancio()))
 }
 
 test "Aldo puede contratar a venancio si ahorra 2000" {
-	aldo.ahorros(aldo.ahorros() + 2000)
+	fixture.aldo().ahorrar(2000)
 	
-	assert.equals(1600, aldo.presupuesto())
+	assert.equals(1600, fixture.aldo().presupuesto())
 	
-	assert.equals(1300, venancio.cotizar(aldo.superficeAPintar()))
+	assert.equals(1300, venancio.cotizar(fixture.aldo().casa().superfice()))
 	
-	assert.that(aldo.puedeContratarAlPintor(venancio))
-}
+	assert.that(fixture.aldo().puedeContratar(fixture.venancio()))
+} 
 
 // A granel
 test "Aldo puede contratar a Raul si usa pintura a granel" {
 	laPintureria.pintureria(todoFluye)
 	
-	assert.equals(1200, aldo.presupuesto())
+	assert.equals(1200, fixture.aldo().presupuesto())
 	
-	const superfice = aldo.superficeAPintar() 
+	const superfice = fixture.aldo().casa().superfice() 
 	
 	assert.equals(1025, raul.cotizarManoDeObra(superfice))
 	
@@ -81,15 +80,15 @@ test "Aldo puede contratar a Raul si usa pintura a granel" {
 	
 	assert.equals(1168.50 , raul.cotizar(superfice))
 	
-	assert.that(aldo.puedeContratarAlPintor(raul))
+	assert.that(fixture.aldo().puedeContratar(raul))
 }
 
 test "Aldo puede contrar a venancio si usa pintura a granel" {
 	laPintureria.pintureria(todoFluye)
 	
-	assert.equals(1200, aldo.presupuesto())
+	assert.equals(1200, fixture.aldo().presupuesto())
 	
-	const superfice = aldo.superficeAPintar() 
+	const superfice = fixture.aldo().casa().superfice() 
 	
 	assert.equals(1100, venancio.cotizarManoDeObra(superfice))
 	
@@ -97,5 +96,5 @@ test "Aldo puede contrar a venancio si usa pintura a granel" {
 	
 	assert.equals(1243.50, venancio.cotizar(superfice))
 	
-	assert.notThat(aldo.puedeContratarAlPintor(venancio))
+	assert.notThat(fixture.aldo().puedeContratar(fixture.venancio()))
 }
