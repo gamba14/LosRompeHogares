@@ -21,8 +21,8 @@ object adaptadorPintores {
 		return new Pintor("Carlos", carlos)
 	}
 	
-	method adaptarVanacio() {
-		return new Pintor("Raul", venancio)
+	method adaptarVenancio() {
+		return new Pintor("Venancio", venancio)
 	}
 }
 
