@@ -1,0 +1,6 @@
+
+import fixture.*
+
+test "Emanuel cobra 400000 por la casa de Aldo" {
+	assert.equals(400000, fixture.emanuel().darPresupuesto(fixture.aldo().casa()))
+}

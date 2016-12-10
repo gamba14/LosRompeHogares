@@ -67,7 +67,7 @@ class Arquitecto inherits Contratista {
 	
 	override method darPresupuesto(_casa) {
 		
-		return montoPorAmbiente * _casa.pisos()
+		return montoPorAmbiente *_casa.darCantHabitaciones() * _casa.pisos()
 	}
 	
 }
