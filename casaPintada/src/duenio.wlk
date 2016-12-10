@@ -50,7 +50,20 @@ class Duenio{
 	
 	
 	method fueDescuidado() {
-		// TODO: esto cambia para damian (hacer una sub clase?)
 		return historial.any {contrato => contrato.monto() > 5000}
 	}
 }
+
+/**
+ * Subclase para el caso de damian
+ */
+class DuenioDespreocupado inherits Duenio {
+	
+	constructor(_nombre,_ahorros,_casa) = super(_nombre,_ahorros,_casa)
+	constructor(_nombre,_ahorros,_casa, _presupuesto) = super(_nombre,_ahorros,_casa, _presupuesto)
+	
+	override method fueDescuidado() {
+		return casa.pisos() < 3 && super()
+	}
+}
+
