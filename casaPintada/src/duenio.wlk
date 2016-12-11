@@ -52,6 +52,7 @@ class Duenio{
 		ahorros -= contrato.monto()
 	}
 	
+	method contrataciones() = historial
 	
 	method fueDescuidado() {
 		return historial.any {contrato => contrato.monto() > 5000}
