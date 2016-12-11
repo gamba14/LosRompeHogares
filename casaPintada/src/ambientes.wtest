@@ -9,3 +9,14 @@ test "Cuál es la superficie a pintar de la habitación" {
 	assert.equals(20, fixture.habitacionAldo().superficie())
 }
 
+// casa de aldo (parte 2)
+
+test "La casa de aldo No es complicada " {
+	assert.notThat(fixture.casaAldo().esComplicada())
+}
+
+test "La casa de Aldo tiene una superficie de 41 m^2" {
+	assert.equals(41, fixture.casaAldo().darSuperficie())	
+}
+
+
