@@ -42,7 +42,7 @@ class Duenio{
 	
 	method contratar(_contratista) {
 		
-		if (self.puedeContratar(_contratista))
+		if (not self.puedeContratar(_contratista))
 			throw new Exception("No le da el presupuesto para contratar") 
 		
 		const contrato = _contratista.serContratado(casa, self)
