@@ -2,6 +2,7 @@
 import pintores.*
 import pinturerias.*
 import fixture.*
+import agencia.*
 
 
 test "Cuál es la superficie total a pintar para Aldo" {
@@ -103,3 +104,83 @@ test "Aldo puede contrar a venancio si usa pintura a granel" {
 	
 	assert.notThat(fixture.aldo().puedeContratar(fixture.venancio()))
 }
+
+// Test adicionales Aldo (parte 2)
+
+test "Aldo puede contrar a Carlos, Eduardo y Roger" {
+	fixture.initAgencia()
+	
+	const contratables = agencia.puedeContratar( fixture.aldo() ).
+		map { contratista => contratista.nombre() }
+	
+	assert.equals(3, contratables.size())
+	assert.that(contratables.contains("Carlos" ))
+	assert.that(contratables.contains("Eduardo"))
+	assert.that(contratables.contains("Roger"  ))
+}
+ 
+test "Despues de que Aldo contrate a Roger su presupuesto es de 1160 pesos" {
+	const aldo = fixture.aldo()
+	
+	assert.equals(1200, aldo.presupuesto())
+	
+	assert.equals(200, fixture.roger().darPresupuesto(aldo.casa()))
+	
+	aldo.contratar( fixture.roger() )
+	
+	assert.equals(1160, aldo.presupuesto())
+}
+
+test "Aldo recuerda las contrataciones que realizo" {
+	const aldo = fixture.aldo()
+	
+	aldo.contratar( fixture.roger()  )
+	aldo.contratar( fixture.carlos() )
+	
+	const contrataciones = aldo.contrataciones()
+	
+	assert.equals(2, contrataciones.size())
+	
+	const contratados = contrataciones.map{ contrato => contrato.contratista().nombre() }
+	
+	assert.that(contratados.contains("Roger" ))
+	assert.that(contratados.contains("Carlos"))
+}
+
+test "Aldo intenta contratar a Aldo pero No puede" {
+	const aldo = fixture.aldo()
+	
+	var falloLaContratacion = false
+	
+	try {
+		aldo.contratar( fixture.aldo() )
+	}
+	catch ex : Exception 
+		falloLaContratacion = true
+			
+	then always
+		assert.that(falloLaContratacion)
+}
+
+test "Aldo NO fue descuidado al contratar a Roger y Carlos" {
+	const aldo = fixture.aldo()
+	
+	aldo.contratar( fixture.roger()  )
+	aldo.contratar( fixture.carlos() )
+	
+	assert.notThat( aldo.fueDescuidado() )
+}
+
+test "Aldo fue descuidado al contratar a Marcos pese a que ahorro 1.000.000" {
+	const aldo = fixture.aldo()
+	
+	aldo.ahorrar(1000000) // 1.000.000
+	
+	// Marcos combra 100.000
+	assert.equals(100000, fixture.marcos().darPresupuesto(aldo.casa()))
+	
+	aldo.contratar( fixture.marcos() )
+	
+	assert.that( aldo.fueDescuidado() )
+}
+
