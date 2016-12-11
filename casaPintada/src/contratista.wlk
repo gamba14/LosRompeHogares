@@ -1,29 +1,10 @@
+import contrato.*
 
 
-class Contrato {
-	var cliente
-	var monto
-	var contratista
-	
-	constructor(_cliente, _monto, _contratista) {
-		cliente     = _cliente
-		monto       = _monto
-		contratista = _contratista
-	}
-	
-	// getters
-	method cliente()     = cliente
-	method monto()       = monto
-	method contratista() = contratista
-	 
-}
 
-
-class Contratista {
+class Contratista inherits Sujeto {
 
 	var nombre
-
-	var historial = []
 	
 	constructor(_nombre) {
 		nombre = _nombre
@@ -35,13 +16,13 @@ class Contratista {
 		
 		const contrato = new Contrato(_duenio,  self.darPresupuesto( _casa ), self)
 		
-		historial.add(contrato)
+		contratos.add(contrato)
 		
 		return contrato
 	}
 	
 	method loTomoDePunto(_cliente) {
-		const cantidad = historial.filter { 
+		const cantidad = contratos.filter { 
 			contrato =>	contrato.cliente() == _cliente
 		} .size()
 		
@@ -49,7 +30,7 @@ class Contratista {
 	}
 	
 	method montoTotal(){
-		return historial.sum { contrato => contrato.monto() }
+		return contratos.sum { contrato => contrato.monto() }
 	}
 
 	method nombre() = nombre

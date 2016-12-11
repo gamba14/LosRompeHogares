@@ -1,11 +1,11 @@
+import contrato.*
 
-class Duenio{
+
+class Duenio inherits Sujeto {
 	var nombre
 	var ahorros
 	var ppresupuesto = 20 // %
 	var casa
-	
-	var historial = []
 	
 	constructor(_nombre,_ahorros,_casa){
 		nombre  = _nombre
@@ -47,15 +47,13 @@ class Duenio{
 		
 		const contrato = _contratista.serContratado(casa, self)
 		
-		historial.add(contrato)
+		contratos.add(contrato)
 		
 		ahorros -= contrato.monto()
 	}
 	
-	method contrataciones() = historial
-	
 	method fueDescuidado() {
-		return historial.any {contrato => contrato.monto() > 5000}
+		return contratos.any {contrato => contrato.monto() > 5000}
 	}
 }
 

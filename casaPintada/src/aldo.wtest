@@ -137,7 +137,7 @@ test "Aldo recuerda las contrataciones que realizo" {
 	aldo.contratar( fixture.roger()  )
 	aldo.contratar( fixture.carlos() )
 	
-	const contrataciones = aldo.contrataciones()
+	const contrataciones = aldo.contratos()
 	
 	assert.equals(2, contrataciones.size())
 	
