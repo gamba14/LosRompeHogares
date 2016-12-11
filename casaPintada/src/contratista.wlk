@@ -14,7 +14,7 @@ class Contrato {
 	// getters
 	method cliente()     = cliente
 	method monto()       = monto
-	method contratisca() = contratista
+	method contratista() = contratista
 	 
 }
 
