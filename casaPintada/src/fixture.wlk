@@ -9,19 +9,64 @@ import agencia.*
  */
 object fixture {
 	
-	method cocinaAldo() {
-		return new CocinaRectangular(2,1,3.5)
+	/**
+	 * Casa compliada de 2 pisos y 6 ambientes
+	 */
+	method casaComplicada() {
+		const habitaciones = [
+			new Habitacion(21),
+			new Habitacion(22),
+			new Habitacion(23),
+			new Habitacion(24),
+			new Habitacion(25),
+			new Habitacion(26)
+		]
+		
+		return new Casa(2, habitaciones)
 	}
 	
+	method casaGrande() {
+		const habitaciones = [
+			new Habitacion(21),
+			new Habitacion(22),
+			new Habitacion(23),
+			new Habitacion(24),
+			new Habitacion(25),
+			new Habitacion(26),
+			new Habitacion(27)
+		]
+		
+		return new Casa(4, habitaciones)
+	}
+	
+	/**
+     * Cocina de Aldo
+	 */
+	method cocinaAldo() {
+		return new CocinaRectangular(2, 1, 3.5)
+	}
+	
+	/**
+	 * Una Habitacion de Aldo
+	 */
 	method habitacionAldo() {
 		return new Habitacion(20)
 	}
 	
-	method aldo() {
-		const habitaciones = [self.habitacionAldo(), self.cocinaAldo()]
-		const casa         = new Casa(2, habitaciones)
+	/**
+	 * Casa de Aldo
+	 */
+	method casaAldo() {
+		const habitaciones = [
+			self.habitacionAldo(), 
+			self.cocinaAldo()
+		]
 		
-		return new Duenio("Aldo", 6000, casa)
+		return new Casa(2, habitaciones)
+	}
+	
+	method aldo() {
+		return new Duenio("Aldo", 6000, self.casaAldo())
 	}
     
     method raul() {
