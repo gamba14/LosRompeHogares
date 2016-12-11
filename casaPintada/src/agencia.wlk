@@ -1,6 +1,6 @@
 
 
-object agencia {
+class Agencia {
 	
 	const contratistas = new Set() 
 		
@@ -10,14 +10,6 @@ object agencia {
 	
 	method removerContratista(_quien) {
 		contratistas.remove(_quien)
-	}
-	
-	/**
-	 * Borra a todos los contratistas de la agencia,
-	 * Util en algunos casos de pruebas
-	 */
-	method reset() {
-		contratistas.clear()
 	}
 	
 	method puedeContratar(_cliente){

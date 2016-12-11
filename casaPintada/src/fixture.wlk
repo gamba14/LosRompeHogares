@@ -101,15 +101,20 @@ object fixture {
     	return new Plomero("Roger", 10)
     }
     
-    method initAgencia() {
-    	agencia.reset()
-    	agencia.agregarContratista(self.raul())
-    	agencia.agregarContratista(self.carlos())
+    method agenciaUNO() {
+    	
+	   	const agencia = new Agencia()
+    	
+    	agencia.agregarContratista(self.raul()    )
+    	agencia.agregarContratista(self.carlos()  )
     	agencia.agregarContratista(self.venancio())
-    	agencia.agregarContratista(self.emanuel())
-    	agencia.agregarContratista(self.marcos())
-    	agencia.agregarContratista(self.lito())
-    	agencia.agregarContratista(self.eduardo())
-    	agencia.agregarContratista(self.roger())
+    	agencia.agregarContratista(self.emanuel() )
+    	agencia.agregarContratista(self.marcos()  )
+    	agencia.agregarContratista(self.lito()    )
+    	agencia.agregarContratista(self.eduardo() )
+    	agencia.agregarContratista(self.roger()   )
+    	
+    	return agencia
+    }
     }
 }
