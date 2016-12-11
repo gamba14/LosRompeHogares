@@ -36,7 +36,7 @@ class Duenio{
 	
 	method puedeContratar(_contratista){
 		
-		return (_contratista.darPresupuesto(casa)) < (self.presupuesto())
+		return (_contratista.darPresupuesto(casa)) <= (self.presupuesto())
 		
 	}
 	
