@@ -100,6 +100,22 @@ object fixture {
     method roger() {
     	return new Plomero("Roger", 10)
     }
+     
+    method noelia() {
+    	return new Electricista("Noelia", 250)
+    }
+     
+    method silvina() {
+     	return new Plomero("Silvina", 25)
+    }
+     
+    method eliana() {
+     	return new MaestroMObra("Eliana", 12000)
+    }
+     
+    method dodain() {
+     	return new Albanil("Dodain", 3)
+    }
     
     method agenciaUNO() {
     	
@@ -116,5 +132,16 @@ object fixture {
     	
     	return agencia
     }
+    
+	method agenciaALFA() {
+    	
+    	const agencia = new Agencia()
+    	
+    	agencia.agregarContratista(self.noelia() )
+    	agencia.agregarContratista(self.silvina())
+    	agencia.agregarContratista(self.eliana() )
+    	agencia.agregarContratista(self.dodain() )
+    	
+    	return agencia
     }
 }
