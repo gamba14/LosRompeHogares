@@ -1,5 +1,6 @@
 import fixture.*
 
+// Test adaptados de la parte 1
 
 test "Cuál es la superficie a pintar de la cocina" {
 	assert.equals(21, fixture.cocinaAldo().superficie())
