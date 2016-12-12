@@ -55,6 +55,15 @@ class Duenio inherits Sujeto {
 	method fueDescuidado() {
 		return contratos.any {contrato => contrato.monto() > 5000}
 	}
+	
+	method contratados() {
+		var contratados = new Set() 
+		
+		 contratos.map {contrato => contrato.contratista()} .
+			forEach {contratista => contratados.add(contratista) }
+			
+		return contratados
+	}
 }
 
 /**
