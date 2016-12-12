@@ -66,7 +66,7 @@ class DuenioDespreocupado inherits Duenio {
 	constructor(_nombre,_ahorros,_casa, _presupuesto) = super(_nombre,_ahorros,_casa, _presupuesto)
 	
 	override method fueDescuidado() {
-		return casa.pisos() < 3 && super()
+		return (casa.pisos() < 3) && super()
 	}
 }
 
