@@ -1,4 +1,10 @@
 
+/*
+ * Ahora 'Casa' NO estan asociadas a una solo casa en concreto (casa de aldo)
+ * y puede representar gran variedad de casas, lo que permite evitar modelar
+ * particularmente cada casa nueva que se agregue al sistema
+ */
+
 class Casa {
 	var pisos
 	var habitaciones = []
@@ -22,6 +28,10 @@ class Casa {
 		return self.darCantHabitaciones() > 3
 	}
 }
+
+/*
+ * Habitacion ahora es mas generico
+ */
 
 class Habitacion {
 	

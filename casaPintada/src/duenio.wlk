@@ -1,5 +1,12 @@
 import contrato.*
 
+/*
+ * Ahora Duenio (aka cliente, originalmente Aldo),
+ * NO esta asociado al comportamiento de una sola persona,
+ * representa al comportamiento general de todos los clientes de los 
+ * contratistas, lo cual evita tener que modelar un objecto nuevo para cada
+ * cliente que participe en el sistema 
+ */
 
 class Duenio inherits Sujeto {
 	var nombre
@@ -67,7 +74,7 @@ class Duenio inherits Sujeto {
 }
 
 /**
- * Subclase para el caso de damian
+ * Subclase para el caso de damian y personas con su mismo criterio
  */
 class DuenioDespreocupado inherits Duenio {
 	

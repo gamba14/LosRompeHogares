@@ -1,4 +1,8 @@
 
+/**
+ * Representa un contrato (trabajo) realizado 
+ * por un contratista para un cliente 
+ */
 class Contrato {
 	var cliente
 	var monto
@@ -19,6 +23,7 @@ class Contrato {
 
 /**
  * Sujeto involucrado en un contrato
+ * Generalizacion de Duenio y Contratista
  */
 class Sujeto {
 	

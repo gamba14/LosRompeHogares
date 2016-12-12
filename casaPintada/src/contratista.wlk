@@ -1,6 +1,11 @@
 import contrato.*
 
-
+/*
+ * Ahora los contratistas son representados con un comportamiento general
+ * relacionado con su profeccion lo que permite agregar facilmente 
+ * nuevos contratistas sin tener que modelar nuevamente su comportamiento
+ * exeptuando a los pintores que NO tienen comportamiento general
+ */
 
 class Contratista inherits Sujeto {
 
