@@ -62,7 +62,7 @@ class Duenio inherits Sujeto {
  */
 class DuenioDespreocupado inherits Duenio {
 	
-	constructor(_nombre,_ahorros,_casa) = super(_nombre,_ahorros,_casa)
+	constructor(_nombre,_ahorros,_casa)               = super(_nombre,_ahorros,_casa)
 	constructor(_nombre,_ahorros,_casa, _presupuesto) = super(_nombre,_ahorros,_casa, _presupuesto)
 	
 	override method fueDescuidado() {
