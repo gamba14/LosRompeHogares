@@ -8,6 +8,8 @@ import contratista.Contratista
 import pinturerias.laPintureria 
 import ecuaciones.rounder
 
+// Codigo para adaptar la parte 1 al nuevo modelo (y que el IDE No me tire errores)
+
 /**
  * Para obtener a un pintor (objecto) con el adaptado con Pintor (clase) 
  */
@@ -43,6 +45,8 @@ class Pintor inherits Contratista {
 	}
 }
 
+
+// Codigo herado de la parte 1
 
 object raul {
 	

@@ -1,6 +1,8 @@
 
 import fixture.*
 
+// De la parte 2
+
 test "Emanuel cobra 400000 por el trabajo en la casa de Aldo" {
 	assert.equals(400000, fixture.emanuel().darPresupuesto(fixture.aldo().casa()))
 }
@@ -30,3 +32,5 @@ test "Roger cobra 200 por el trabajo en la casa Aldo" {
 test "Roger cobra 770 por una casa de 4 pisos y 7 ambientes" {
 	assert.equals(770, fixture.roger().darPresupuesto(fixture.casaGrande()))
 }
+
+// De la parte 3

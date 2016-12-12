@@ -1,5 +1,7 @@
 import pintores.*
 
+// codigo heredado de la parte 1
+
 test "Cuanto me cobra Raul de mano de obra por pintar 20 m2" {
 	assert.equals(500, raul.cotizarManoDeObra(20))	
 } 

@@ -3,6 +3,8 @@
  * Seria lindo que se pudiera usar Spock para testear en wollok 
  */
  
+ // codigo heredado
+ 
 import pinturerias.*
 
 

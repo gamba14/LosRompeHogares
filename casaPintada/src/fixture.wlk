@@ -5,9 +5,11 @@ import contratista.*
 import agencia.*
 
 /** 
- * Helper para intanciasion de objetos para los test y otras utilidades
+ * Helper para instanciasion de objetos para los test y otras utilidades
  */
 object fixture {
+	
+	// Casas sin dueño (?)
 	
 	/**
 	 * Casa compliada de 2 pisos y 6 ambientes
@@ -39,6 +41,8 @@ object fixture {
 		return new Casa(4, habitaciones)
 	}
 	
+	// Duenios 
+	
 	/**
      * Cocina de Aldo
 	 */
@@ -65,9 +69,14 @@ object fixture {
 		return new Casa(2, habitaciones)
 	}
 	
+	/**
+	 * Aldo como un duenio
+	 */
 	method aldo() {
 		return new Duenio("Aldo", 6000, self.casaAldo())
 	}
+	
+	// Pintores adaptados
     
     method raul() {
     	return adaptadorPintores.adaptarRaul()
@@ -80,6 +89,8 @@ object fixture {
     method venancio() {
     	return adaptadorPintores.adaptarVenancio()
     }
+    
+    // Contratistas nuevos
     
     method emanuel() {
     	return new Arquitecto("Emanuel", 100000)
@@ -116,6 +127,8 @@ object fixture {
     method dodain() {
      	return new Albanil("Dodain", 3)
     }
+    
+    // Agencias (con guiños a futurama :V)
     
     method agenciaUNO() {
     	

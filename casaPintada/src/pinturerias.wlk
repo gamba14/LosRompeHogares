@@ -2,6 +2,8 @@
  * Todo lo referido a puntuerias
  * Ahora hay clases en la teoria toadavia pero no ganas de reimplementar :V 
  */
+ 
+ // Codigo heredado de la parte 1
 
 import ecuaciones.pintoresca
 

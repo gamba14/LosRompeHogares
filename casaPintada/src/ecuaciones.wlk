@@ -3,6 +3,7 @@
  * Muy "objetivas" las soluciones :V
  */
 
+// codigo heredado de la parte 1
 
 /** objeto que redondea */
 object rounder {

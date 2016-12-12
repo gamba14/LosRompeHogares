@@ -4,6 +4,7 @@ import pinturerias.*
 import fixture.*
 import agencia.*
 
+// Codigo heredado de la parte 1 y adaptado al nuevo modelo
 
 test "Cuál es la superficie total a pintar para Aldo" {
 	assert.equals(41, fixture.aldo().casa().darSuperficie())
