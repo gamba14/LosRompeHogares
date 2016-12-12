@@ -108,7 +108,7 @@ test "Aldo puede contrar a venancio si usa pintura a granel" {
 
 // Test adicionales Aldo (parte 2)
 
-test "Aldo puede contrar a Carlos, Eduardo y Roger" {
+test "Aldo puede contrar a Carlos, Eduardo y Roger de la agencia (UNO)" {
 	const agencia = fixture.agenciaUNO()
 	
 	const contratables = agencia.puedeContratar( fixture.aldo() ).
