@@ -43,7 +43,7 @@ object fixture {
      * Cocina de Aldo
 	 */
 	method cocinaAldo() {
-		return new CocinaRectangular(2, 1, 3.5)
+		return new Habitacion(2, 1, 3.5)
 	}
 	
 	/**
