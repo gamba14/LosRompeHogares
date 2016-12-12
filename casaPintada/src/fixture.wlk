@@ -93,7 +93,7 @@ object fixture {
 			new Habitacion(3, 4, 2)
 		]
 		
-		return new Duenio("Damian", 250000, new Casa(4, habitaciones))
+		return new DuenioDespreocupado("Damian", 250000, new Casa(4, habitaciones))
 	}
 	
 	// Pintores adaptados
