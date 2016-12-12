@@ -76,6 +76,26 @@ object fixture {
 		return new Duenio("Aldo", 6000, self.casaAldo())
 	}
 	
+	method milena() {
+		const habitaciones = [
+			new Habitacion(4, 3, 3),
+			new Habitacion(3, 2, 2)
+		]
+		
+		return new Duenio("Milena", 2000, new Casa(3, habitaciones))
+	}
+	
+	method damian() {
+		const habitaciones = [
+			new Habitacion(4, 3, 3),
+			new Habitacion(3, 2, 2),
+			new Habitacion(3, 2, 3),
+			new Habitacion(3, 4, 2)
+		]
+		
+		return new Duenio("Damian", 250000, new Casa(4, habitaciones))
+	}
+	
 	// Pintores adaptados
     
     method raul() {
