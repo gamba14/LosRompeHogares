@@ -21,12 +21,27 @@ class Contratista inherits Sujeto {
 		return contrato
 	}
 	
+	method clientes() {
+		var clientes = new Set() 
+		
+		 contratos.map {contrato => contrato.cliente()} .
+			forEach {cliente => clientes.add(cliente) }
+			
+		return clientes
+	}
+	
 	method loTomoDePunto(_cliente) {
 		const cantidad = contratos.filter { 
 			contrato =>	contrato.cliente() == _cliente
 		} .size()
 		
 		return cantidad >= 2
+	}
+	
+	method montoTotalRecivioDe(_cliente) {
+		return contratos.filter {
+			contrato => contrato.cliente() == _cliente 
+		} .sum { contrato => contrato.monto() }
 	}
 	
 	method montoTotal(){
