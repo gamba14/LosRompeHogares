@@ -34,3 +34,88 @@ test "Roger cobra 770 por una casa de 4 pisos y 7 ambientes" {
 }
 
 // De la parte 3
+
+test "Noelia cobra 2000 por el trabajo en la casa de Damian" {
+	// 2000 (250 * 4 ambientes * 2 porque es una casa complicada)
+	assert.equals(2000, fixture.noelia().darPresupuesto(fixture.damian().casa()))
+}
+
+test "Silvina cobra 500 por el trabajo en la casa de Damian" {
+	// 500 (4 ambientes * 100 = 400 a los que se le suman 25% de esos 400 por tener más de 2 pisos)
+	assert.equals(500, fixture.silvina().darPresupuesto(fixture.damian().casa()))
+}
+
+test "Noelia cobra 500 por el trabajo en la casa de Milena" {
+	// 500 (250 * 2 ambientes, la casa no es complicada así que está bien así)
+	assert.equals(500, fixture.noelia().darPresupuesto(fixture.milena().casa()))
+}
+
+test "Elina cobra 57.600 por el trabajo en la casa de Damian" {
+	// $ 57.600 = $ 12.000 * 4 ambientes + un 20% de recargo porque la casa de Damián es complicada
+	assert.equals(57600, fixture.eliana().darPresupuesto(fixture.damian().casa()))
+}
+
+test "Milena solo puede contratar a Silvina en la agencia nueva (ALFA) "
+{
+	const agencia = fixture.agenciaALFA()
+	
+	const contratables = agencia.puedeContratar( fixture.milena() ).
+		map { contratista => contratista.nombre() }
+	
+	assert.equals(1, contratables.size())
+	assert.that(contratables.contains("Silvina"))
+}
+
+test "Damian puede contratar a Noelia, Silvina y Dodain de la agencia nueva (ALFA)" {
+	const agencia = fixture.agenciaALFA()
+	
+	const contratables = agencia.puedeContratar( fixture.damian() ).
+		map { contratista => contratista.nombre() }
+	
+	assert.equals(3, contratables.size())
+	assert.that(contratables.contains("Noelia" ))
+	assert.that(contratables.contains("Silvina"))
+	assert.that(contratables.contains("Dodain" ))
+}
+
+test "Segun Damian, NO fue descuidado al contratar a Eliana y Silvina despues de ahorrar 1.500.00" {
+	const damian = fixture.damian()
+	
+	damian.ahorrar(1500000) // 1.500.000
+	
+	damian.contratar( fixture.eliana() )
+	damian.contratar( fixture.silvina())
+	
+	assert.notThat( damian.fueDescuidado() )
+}
+
+test "Segun Milena, fue descuidada al contratar a Eliana y Silvina despues de ahorrar 1.500.00" {
+	const milena = fixture.milena()
+	
+	milena.ahorrar(1500000) // 1.500.000
+	
+	milena.contratar( fixture.eliana() )
+	milena.contratar( fixture.silvina())
+	
+	assert.that( milena.fueDescuidado() )
+}
+
+test "Milena recuerda que contrato a Eliana y Silvina"  {
+	const milena = fixture.milena()
+	
+	milena.ahorrar(1500000) // 1.500.000
+	
+	const eliana  = fixture.eliana()
+	const silvina = fixture.silvina()
+	
+	milena.contratar( eliana  )
+	milena.contratar( silvina )
+	milena.contratar( eliana  )
+	milena.contratar( silvina )
+	
+	const contratados = milena.contratados().map { contratista => contratista.nombre()  }
+	
+	assert.equals(2, contratados.size())
+	assert.that(contratados.contains("Eliana" ))
+	assert.that(contratados.contains("Silvina"))
+}
