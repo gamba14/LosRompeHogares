@@ -119,3 +119,47 @@ test "Milena recuerda que contrato a Eliana y Silvina"  {
 	assert.that(contratados.contains("Eliana" ))
 	assert.that(contratados.contains("Silvina"))
 }
+
+
+test "Dodain No tomo de punto a Damian, luego ser contratado una vez" {
+	const damian  = fixture.damian()
+	const dodain  = fixture.dodain()
+	const silvina = fixture.silvina()
+	
+	damian.contratar( dodain  )
+	damian.contratar( silvina )
+
+	assert.notThat( dodain.loTomoDePunto(damian) )	
+}
+
+test "Dodain tomo de punto a Damian, luego ser contratado dos veces" {
+	const damian  = fixture.damian()
+	const dodain  = fixture.dodain()
+	const silvina = fixture.silvina()
+	
+	damian.contratar( dodain  )
+	damian.contratar( silvina )
+	damian.contratar( dodain  )
+
+	assert.that( dodain.loTomoDePunto(damian) )	
+}
+
+test "Dodain recivio 9.600 de Damian, luego ser contratado dos veces" {
+	const damian  = fixture.damian()
+	const dodain  = fixture.dodain()
+	const silvina = fixture.silvina()
+	
+	damian.contratar( dodain  )
+	damian.contratar( silvina )
+	damian.contratar( dodain  )
+	
+	assert.equals(2, dodain.contratos().size())
+	
+	const clientesDodian = dodain.clientes()
+	
+	assert.equals(1, clientesDodian.size())
+	assert.that(clientesDodian.contains(damian))
+	
+	assert.equals(9600 , dodain.montoTotal()) 
+	assert.equals(9600 , dodain.montoTotalRecivioDe(damian) )	
+}
