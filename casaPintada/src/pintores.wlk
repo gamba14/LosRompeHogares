@@ -1,75 +1,61 @@
 /* 
  * Pintores conocidos 
- * Se usa polimorfismo pero los objectos no se enteran :V
- * (Ver pinturerias.wlk para mas detalles)  
  */
 
 import contratista.Contratista
-import pinturerias.laPintureria 
 import ecuaciones.rounder
+import pinturerias.manoEnLaLata // pintureria por defecto
 
 // Codigo para adaptar la parte 1 al nuevo modelo (y que el IDE No me tire errores)
 
 /**
- * Para obtener a un pintor (objecto) con el adaptado con Pintor (clase) 
- */
-object adaptadorPintores {
-	
-	method adaptarRaul() {
-		return new Pintor("Raul", raul)
-	}
-	
-	method adaptarCarlos() {
-		return new Pintor("Carlos", carlos)
-	}
-	
-	method adaptarVenancio() {
-		return new Pintor("Venancio", venancio)
-	}
-}
-
-/**
- * Esta clase es para obtener adaptar el codigo de pintores con el de los contratistas
- * El IDE me putea (de varias formas) cuando quiero hacer que los objetos de Contratista 
+ * Esta clase es para obtener adaptar el codigo de pintores con el de los contratistas 
  */
 class Pintor inherits Contratista {
 	
-	var pintor 
+	constructor(_nombre) = super(_nombre)
 	
-	constructor(_nombre, _pintor) = super(_nombre) {
-		pintor = _pintor
-	} 
+	method cotizar(_metrosCuadrados) = 0.0
 	
 	override method darPresupuesto(_casa) {
-		return pintor.cotizar(_casa.darSuperficie())
+		return self.cotizar(_casa.darSuperficie())
 	}
 }
 
 
-// Codigo herado de la parte 1
+// Codigo herado y corregido de la parte 1
 
-object raul {
+object raul inherits Pintor("Raul") {
 	
 	const costoPorMetroCuadrado = 25
+	
+	var pintureria = manoEnLaLata
+	
+	method pintureria() = pintureria
+	
+	method pintureria(_pintureria) {
+		pintureria = _pintureria
+	}
+	
 	
 	method cotizarManoDeObra(metrosCuadrados) {
 		return metrosCuadrados * costoPorMetroCuadrado
 	}
 	
-	method cotizar(metrosCuadrados) {
-		return  self.cotizarManoDeObra(metrosCuadrados) + laPintureria.costoPintura(metrosCuadrados)
+	override method cotizar(metrosCuadrados) {
+		return  self.cotizarManoDeObra(metrosCuadrados) + pintureria.costoPintura(metrosCuadrados)
 	}
 	
 }
 
 
-object carlos  {
+object carlos inherits Pintor("Carlos") {
 
 	const superficieMinima = 20 // m²
 	const montoMinimo = 500
 	const costoAdicional = 30
 
-	method cotizar(metrosCuadrados) {
+	override method cotizar(metrosCuadrados) {
 		
 		if (metrosCuadrados < superficieMinima) {
 			return montoMinimo
@@ -80,16 +66,24 @@ object carlos  {
 	} 	
 }
 
-object venancio {
+object venancio inherits Pintor("Carlos") {
 	
 	const fraccion = 10 // m²
 	const costoFraccion = 220
+	
+	var pintureria = manoEnLaLata
+	
+	method pintureria() = pintureria
+	
+	method pintureria(_pintureria) {
+		pintureria = _pintureria
+	}
 	
 	method cotizarManoDeObra(metrosCuadrados ) {
 		return rounder.roundUp(metrosCuadrados / fraccion) * costoFraccion
 	}
 	
-	method cotizar(metrosCuadrados) {
-		return self.cotizarManoDeObra(metrosCuadrados ) + laPintureria.costoPintura(metrosCuadrados)
+	override method cotizar(metrosCuadrados) {
+		return self.cotizarManoDeObra(metrosCuadrados ) + pintureria.costoPintura(metrosCuadrados)
 	}
 }

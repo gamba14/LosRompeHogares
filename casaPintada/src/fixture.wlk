@@ -95,21 +95,7 @@ object fixture {
 		
 		return new DuenioDespreocupado("Damian", 250000, new Casa(4, habitaciones))
 	}
-	
-	// Pintores adaptados
-    
-    method raul() {
-    	return adaptadorPintores.adaptarRaul()
-    }
-    
-    method carlos() {
-    	return adaptadorPintores.adaptarCarlos()
-    }
-    
-    method venancio() {
-    	return adaptadorPintores.adaptarVenancio()
-    }
-    
+	    
     // Contratistas nuevos
     
     method emanuel() {
@@ -154,14 +140,14 @@ object fixture {
     	
 	   	const agencia = new Agencia()
     	
-    	agencia.agregarContratista(self.raul()    )
-    	agencia.agregarContratista(self.carlos()  )
-    	agencia.agregarContratista(self.venancio())
-    	agencia.agregarContratista(self.emanuel() )
-    	agencia.agregarContratista(self.marcos()  )
-    	agencia.agregarContratista(self.lito()    )
-    	agencia.agregarContratista(self.eduardo() )
-    	agencia.agregarContratista(self.roger()   )
+    	agencia.agregarContratista(      raul      )
+    	agencia.agregarContratista(      carlos    )
+    	agencia.agregarContratista(      venancio  )
+    	agencia.agregarContratista( self.emanuel() )
+    	agencia.agregarContratista( self.marcos()  )
+    	agencia.agregarContratista( self.lito()    )
+    	agencia.agregarContratista( self.eduardo() )
+    	agencia.agregarContratista( self.roger()   )
     	
     	return agencia
     }
