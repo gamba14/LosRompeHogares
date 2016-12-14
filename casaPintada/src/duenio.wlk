@@ -64,12 +64,7 @@ class Duenio inherits Sujeto {
 	}
 	
 	method contratados() {
-		var contratados = new Set() 
-		
-		 contratos.map {contrato => contrato.contratista()} .
-			forEach {contratista => contratados.add(contratista) }
-			
-		return contratados
+		return contratos.map { contrato => contrato.contratista() } .asSet()
 	}
 }
 

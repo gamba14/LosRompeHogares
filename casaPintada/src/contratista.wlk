@@ -27,12 +27,7 @@ class Contratista inherits Sujeto {
 	}
 	
 	method clientes() {
-		var clientes = new Set() 
-		
-		 contratos.map {contrato => contrato.cliente()} .
-			forEach {cliente => clientes.add(cliente) }
-			
-		return clientes
+		return contratos.map { contrato => contrato.cliente() } .asSet()
 	}
 	
 	method loTomoDePunto(_cliente) {
